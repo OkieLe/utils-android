@@ -1,10 +1,11 @@
-package com.boopited.utils_android.kt
+package com.boopited.utils_android.common
 
 import kotlin.properties.Delegates
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-fun <T> Delegates.notNullSingleValue() = NotNullSingleValueVar<T>()
+fun <T> Delegates.notNullSingleValue() =
+    NotNullSingleValueVar<T>()
 
 class NotNullSingleValueVar<T> : ReadWriteProperty<Any?, T> {
     private var value: T? = null
