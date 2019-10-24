@@ -2,7 +2,7 @@ package com.boopited.utils_android.app
 
 import android.os.Handler
 import android.os.Looper
-import com.boopited.utils_android.common.subscribeOnIO
+import com.boopited.utils_android.rx.subscribeOnIO
 import io.reactivex.Flowable
 import java.util.concurrent.TimeUnit
 

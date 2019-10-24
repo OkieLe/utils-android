@@ -4,14 +4,19 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Point
 
-fun Context.px2dp(pxValue: Float): Int {
+fun Context.px2dp(pxValue: Float): Float {
     val scale = resources.displayMetrics.density
-    return  (pxValue / scale + 0.5f).toInt()
+    return pxValue / scale + 0.5f
 }
 
 fun Context.dp2px(dipValue: Float): Int {
     val scale = resources.displayMetrics.density
-    return  (dipValue * scale + 0.5f).toInt()
+    return (dipValue * scale + 0.5f).toInt()
+}
+
+fun Context.sp2px(sp: Float): Float {
+    val scale = resources.displayMetrics.scaledDensity
+    return sp * scale + 0.5f
 }
 
 fun Context.statusBarHeight(): Int {

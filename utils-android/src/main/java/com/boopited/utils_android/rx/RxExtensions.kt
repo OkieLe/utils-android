@@ -1,4 +1,4 @@
-package com.boopited.utils_android.common
+package com.boopited.utils_android.rx
 
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
