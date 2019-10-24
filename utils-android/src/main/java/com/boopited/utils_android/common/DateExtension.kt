@@ -1,21 +1,17 @@
 package com.boopited.utils_android.common
 
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
-
-// TODO: replace with Java8 DateFormat
 
 private const val DATE_FORMAT_DATE_NO_TIME_ENGLISH = "yyyy-MM-dd"
 
 fun Date.now() = Date()
+fun Date.timestamp() = time
 
 fun Date.today() = Date()
-
-fun Date.tomorrow() = addDate(1)
-
-fun Date.yesterday() = addDate(-1)
-
-fun Date.timestamp() = this.time
+fun Date.tomorrow() = addDay(1)
+fun Date.yesterday() = addDay(-1)
 
 fun Date.of(year: Int = -1, month: Int = -1, day: Int = -1,
             hour: Int = -1, minute: Int = -1, second: Int = -1): Date {
@@ -56,24 +52,15 @@ fun Date.greaterEqualThan(date: Date) = this.time - date.time >= 0
 
 fun Date.englishDateNoTime():String = SimpleDateFormat(DATE_FORMAT_DATE_NO_TIME_ENGLISH, Locale.CHINA).format(this)
 
-fun Date.fullEnglishNoTimeDate(): Date {
-    val simpleDateFormat = SimpleDateFormat(DATE_FORMAT_DATE_NO_TIME_ENGLISH, Locale.CHINA)
-    return simpleDateFormat.parse(englishDateNoTime())
-}
-
 fun fullEnglishNoTimeDate(dateString: String): Date {
     val simpleDateFormat = SimpleDateFormat(DATE_FORMAT_DATE_NO_TIME_ENGLISH, Locale.CHINA)
-    return if (dateString.isEmpty()) Date() else simpleDateFormat.parse(dateString)
-}
-
-fun Date.isThisYear(): Boolean {
-    val calendar = Calendar.getInstance()
-    calendar.time = this
-    val year = calendar.get(Calendar.YEAR)
-
-    calendar.time = Date()
-    val thisYear = calendar.get(Calendar.YEAR)
-    return year == thisYear
+    return if (dateString.isEmpty()) Date() else {
+        try {
+            simpleDateFormat.parse(dateString)
+        } catch (e: ParseException) {
+            Date()
+        }
+    }
 }
 
 fun Date.addYear(value: Int): Date {
@@ -82,7 +69,7 @@ fun Date.addYear(value: Int): Date {
     return calendar.time
 }
 
-fun Date.addDate(value: Int): Date {
+fun Date.addDay(value: Int): Date {
     val calendar = Calendar.getInstance()
     calendar.add(Calendar.DATE, value)
     return calendar.time
