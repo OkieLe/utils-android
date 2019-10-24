@@ -2,6 +2,10 @@
 
 buildscript {
     ext.kotlin_version = '1.3.50'
+    ext.gson_version = '2.8.6'
+    ext.eventbus_version = '3.1.1'
+    ext.okhttp_version = '4.2.1'
+    ext.retrofit_version = '2.6.2'
     repositories {
         google()
         jcenter()
