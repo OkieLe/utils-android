@@ -55,7 +55,7 @@ object ProcessHelper {
         if (runningProcesses != null) {
             for (processInfo in runningProcesses) {
                 if (!applicationId.equals(processInfo.processName, ignoreCase = true)) {
-                    android.os.Process.killProcess(processInfo.pid)
+                    Process.killProcess(processInfo.pid)
                 }
             }
         }
