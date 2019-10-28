@@ -2,7 +2,7 @@ package com.boopited.utils_android.network.restful.adapter
 
 import io.reactivex.Flowable
 import io.reactivex.Single
-import okhttp3.ResponseBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Response
@@ -53,7 +53,7 @@ private class FlowableAdapter(private val nextAdapter: CallAdapter<Any, Flowable
 private fun handleUhe(throwable: Throwable): Response<Any> = when (throwable) {
     is UnknownHostException -> {
         val message = throwable.message ?: "No internet"
-        Response.error<Any>(999, ResponseBody.create(null, message))
+        Response.error<Any>(999, message.toResponseBody(null))
     }
 
     else -> throw throwable

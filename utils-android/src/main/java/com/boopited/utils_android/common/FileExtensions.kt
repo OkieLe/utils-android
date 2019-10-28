@@ -30,7 +30,6 @@ fun Context.readFile(pathName: String): Single<String> {
         try {
             val fileInputStream = openFileInput(pathName)
             val b = ByteArray(BUFFER_SIZE)
-            var n: Int
             val byteArrayOutputStream = ByteArrayOutputStream()
             while (true) {
                 fileInputStream.read(b).takeIf { it > -1 }?.let {
