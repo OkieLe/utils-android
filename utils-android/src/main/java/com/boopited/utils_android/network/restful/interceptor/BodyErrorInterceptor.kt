@@ -1,7 +1,7 @@
-package com.boopited.utils_android.network.interceptor
+package com.boopited.utils_android.network.restful.interceptor
 
 import okhttp3.Response
-import com.boopited.utils_android.network.model.ApiException
+import com.boopited.utils_android.network.restful.model.ApiException
 import org.json.JSONObject
 
 class BodyErrorInterceptor : ResponseBodyInterceptor() {
@@ -15,7 +15,11 @@ class BodyErrorInterceptor : ResponseBodyInterceptor() {
         }
         if (jsonObject != null) {
             if (jsonObject.optInt("code", -1) != 200 && jsonObject.has("msg")) {
-                throw ApiException(jsonObject.getString("msg"))
+                throw ApiException(
+                    jsonObject.getString(
+                        "msg"
+                    )
+                )
             }
         }
         return response

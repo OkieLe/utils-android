@@ -1,4 +1,4 @@
-package com.boopited.utils_android.network.model
+package com.boopited.utils_android.network.restful.model
 
 import java.lang.Exception
 

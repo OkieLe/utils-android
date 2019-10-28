@@ -1,9 +1,9 @@
-package com.boopited.utils_android.network
+package com.boopited.utils_android.network.restful
 
 import android.net.TrafficStats
 import com.boopited.utils_android.data.JsonUtils
 import com.boopited.utils_android.debug.isDevMode
-import com.boopited.utils_android.network.interceptor.DelegatingSocketFactory
+import com.boopited.utils_android.network.restful.interceptor.DelegatingSocketFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,9 +19,9 @@ object ApiFactory {
     private const val WRITE_TIMEOUT = 30L
 
     fun <T> create(
-            baseUrl: String, api: Class<T>,
-            readTimeout: Long = READ_TIMEOUT,
-            interceptors: List<Interceptor>? = null
+        baseUrl: String, api: Class<T>,
+        readTimeout: Long = READ_TIMEOUT,
+        interceptors: List<Interceptor>? = null
     ): T {
         val socketFactory = object : DelegatingSocketFactory(getDefault()) {
             override fun configureSocket(socket: Socket) {

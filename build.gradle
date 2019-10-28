@@ -2,10 +2,12 @@
 
 buildscript {
     ext.kotlin_version = '1.3.50'
+    ext.kotlin_coroutines_version = '1.3.2'
     ext.gson_version = '2.8.6'
     ext.eventbus_version = '3.1.1'
     ext.okhttp_version = '4.2.1'
     ext.retrofit_version = '2.6.2'
+    ext.apollo_version = '1.2.0'
     repositories {
         google()
         jcenter()
@@ -23,7 +25,11 @@ allprojects {
     repositories {
         google()
         jcenter()
-
+        maven {
+            // The coroutines artifact is not deployed on jcenter yet
+            // See https://github.com/apollographql/apollo-android/issues/1325
+            url = uri("http://dl.bintray.com/apollographql/android")
+        }
     }
 }
 

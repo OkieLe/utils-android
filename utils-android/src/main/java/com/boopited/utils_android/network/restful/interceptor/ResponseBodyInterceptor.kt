@@ -1,4 +1,4 @@
-package com.boopited.utils_android.network.interceptor
+package com.boopited.utils_android.network.restful.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response

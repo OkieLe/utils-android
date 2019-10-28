@@ -1,4 +1,4 @@
-package com.boopited.utils_android.network.adapter
+package com.boopited.utils_android.network.restful.adapter
 
 import io.reactivex.Observable
 import io.reactivex.Scheduler
@@ -37,7 +37,11 @@ class RxThreadCallAdapter private constructor(
 
     override fun get(returnType: Type, annotations: Array<Annotation>, retrofit: Retrofit): CallAdapter<*, *>? {
         return original.get(returnType, annotations, retrofit)?.let {
-            RxCallAdapterWrapper(it, subscribeScheduler, observerScheduler)
+            RxCallAdapterWrapper(
+                it,
+                subscribeScheduler,
+                observerScheduler
+            )
         }
     }
 
@@ -46,7 +50,10 @@ class RxThreadCallAdapter private constructor(
         fun create(subscribeScheduler: Scheduler = Schedulers.io(),
                    observerScheduler: Scheduler = AndroidSchedulers.mainThread())
                 : CallAdapter.Factory {
-            return RxThreadCallAdapter(subscribeScheduler, observerScheduler)
+            return RxThreadCallAdapter(
+                subscribeScheduler,
+                observerScheduler
+            )
         }
     }
 }

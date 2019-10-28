@@ -1,4 +1,4 @@
-package com.boopited.utils_android.network.adapter
+package com.boopited.utils_android.network.restful.adapter
 
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -18,11 +18,15 @@ class NetworkUnavailableCallAdapter : CallAdapter.Factory() {
 
         @Suppress("UNCHECKED_CAST")
         return when (getRawType(returnType)) {
-            Single::class.java -> SingleAdapter(nextAdapterDelegate
-                    as CallAdapter<Any, Single<Response<Any>>>)
+            Single::class.java -> SingleAdapter(
+                nextAdapterDelegate
+                        as CallAdapter<Any, Single<Response<Any>>>
+            )
 
-            Flowable::class.java -> FlowableAdapter(nextAdapterDelegate
-                    as CallAdapter<Any, Flowable<Response<Any>>>)
+            Flowable::class.java -> FlowableAdapter(
+                nextAdapterDelegate
+                        as CallAdapter<Any, Flowable<Response<Any>>>
+            )
             else -> null
         }
     }

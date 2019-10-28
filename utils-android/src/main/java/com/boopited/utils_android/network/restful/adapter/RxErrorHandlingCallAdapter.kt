@@ -1,6 +1,6 @@
-package com.boopited.utils_android.network.adapter
+package com.boopited.utils_android.network.restful.adapter
 
-import com.boopited.utils_android.network.model.RetrofitException
+import com.boopited.utils_android.network.restful.model.RetrofitException
 import io.reactivex.*
 import io.reactivex.functions.Function
 import retrofit2.Call
@@ -17,12 +17,16 @@ class RxErrorHandlingCallAdapter private constructor() : CallAdapter.Factory() {
     private val original: RxJava2CallAdapterFactory = RxJava2CallAdapterFactory.create()
 
     companion object {
-        fun create(): CallAdapter.Factory = RxErrorHandlingCallAdapter()
+        fun create(): CallAdapter.Factory =
+            RxErrorHandlingCallAdapter()
     }
 
     override fun get(returnType: Type, annotations: Array<Annotation>, retrofit: Retrofit): CallAdapter<*, *> {
         val wrapped = original.get(returnType, annotations, retrofit) as CallAdapter<out Any, *>
-        return RxCallAdapterWrapper(retrofit, wrapped)
+        return RxCallAdapterWrapper(
+            retrofit,
+            wrapped
+        )
     }
 
     private class RxCallAdapterWrapper<R>(private val retrofit: Retrofit, private val wrapped: CallAdapter<R, *>) :

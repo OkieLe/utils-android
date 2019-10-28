@@ -1,4 +1,4 @@
-package com.boopited.utils_android.network.model
+package com.boopited.utils_android.network.restful.model
 
 import okhttp3.ResponseBody
 import retrofit2.Converter
@@ -19,11 +19,24 @@ class RetrofitException(
 
         fun httpError(url: String, response: Response<*>?, retrofit: Retrofit): RetrofitException {
             val message = response?.code().toString() + " " + response?.message()
-            return RetrofitException(message, null, url, response, Kind.HTTP, retrofit)
+            return RetrofitException(
+                message,
+                null,
+                url,
+                response,
+                Kind.HTTP,
+                retrofit
+            )
         }
 
         fun networkError(exception: IOException): RetrofitException {
-            return RetrofitException(exception.message, exception, null, null, Kind.NETWORK)
+            return RetrofitException(
+                exception.message,
+                exception,
+                null,
+                null,
+                Kind.NETWORK
+            )
         }
 
         fun unexpectedError(exception: Throwable): RetrofitException {

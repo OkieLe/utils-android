@@ -1,7 +1,7 @@
-package com.boopited.utils_android.network.adapter
+package com.boopited.utils_android.network.restful.adapter
 
 import androidx.lifecycle.LiveData
-import com.boopited.utils_android.network.model.ApiResponse
+import com.boopited.utils_android.network.restful.model.ApiResponse
 import retrofit2.*
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
@@ -21,7 +21,9 @@ class LiveDataCallAdapter : CallAdapter.Factory() {
         require(observableType is ParameterizedType) { "resource must be parameterized" }
 
         val bodyType = getParameterUpperBound(0, observableType)
-        return LiveDataCallAdapterWrapper<Any>(bodyType)
+        return LiveDataCallAdapterWrapper<Any>(
+            bodyType
+        )
     }
 
     private class LiveDataCallAdapterWrapper<R>(private val responseType: Type)

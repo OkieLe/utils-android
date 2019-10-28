@@ -1,4 +1,4 @@
-package com.boopited.utils_android.network.interceptor
+package com.boopited.utils_android.network.restful.interceptor
 
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
