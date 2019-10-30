@@ -1,4 +1,4 @@
-package com.boopited.utils_android.app
+package com.boopited.utils_android.thread
 
 import android.os.Handler
 import android.os.Looper

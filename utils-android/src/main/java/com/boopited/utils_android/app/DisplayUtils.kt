@@ -35,7 +35,7 @@ fun Context.navigationBarHeight(): Int {
     return if (resourceId > 0) {
         resources.getDimensionPixelSize(resourceId)
     } else {
-        dp2px(48f)
+        0
     }
 }
 
