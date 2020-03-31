@@ -25,7 +25,7 @@
 # Gson rules
 -keep class com.google.gson.** { *; }
 -keepattributes EnclosingMethod
--keep class * implements com.boopited.utils_android.data.IJson {*;}
+-keep class * implements io.github.boopited.droidutils.data.IJson {*;}
 
 ## EventBus ##
 
@@ -40,7 +40,7 @@
     <init>(java.lang.Throwable);
 }
 
--keep class * extends com.boopited.utils_android.common.BaseEvent
+-keep class * extends io.github.boopited.droidutils.common.BaseEvent
 # EventBus end
 
 ## okhttp3 ##
